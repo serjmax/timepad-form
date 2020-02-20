@@ -1,0 +1,249 @@
+@font-face {
+    font-family: "Repro-Regular";
+    src: url("fonts/ReproFamily-Regular.woff") format('woff');
+}
+
+html{
+    font-family: Repro-Regular;
+    background-color: #262626;
+    color: #F0EADC;
+}
+
+a{
+    color: #FF3F05;
+}
+
+#tpw_cont{
+    padding-top: 2px;
+    width: 456px;
+}
+
+.b-reg-table_type_striped{
+    display: flex;
+    flex-direction: column;
+}
+
+.b-reg-table__price-mobile{
+    font-size: 44px;
+    line-height: 40px;
+    margin-bottom: 8px;
+}
+
+.b-reg-table__text{
+    text-transform: lowercase;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.b-reg-table__plusminus-value.js-plusminus_display{
+    font-size: 44px;
+    line-height: 40px;
+    width: 48px;
+    text-align: center;
+}
+
+.b-reg-table__plusminus_btn:hover{
+    cursor: pointer;
+}
+
+.svg-button:hover{
+    filter: grayscale(100%) sepia(100%);
+}
+
+.b-reg-table__row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.b-reg-table__plusminus{
+    display: flex;
+    flex-direction: row;
+}
+
+#rei_cont_3160056{
+    margin-top: 32px;
+}
+
+.selectedTicketsInfo{
+    text-transform: lowercase;
+    font-size: 18px;
+    line-height: 26px;
+    display: inline-block;
+    border-top: solid 2px #F0EADC;
+    padding-top: 20px;
+    margin-top: 32px;
+    width: 100%;
+}
+
+
+
+/* Фоорма вопросов */
+
+.b-registration__question{
+    text-transform: lowercase;
+    font-size: 18px;
+    line-height: 26px;
+}
+
+.section-ank{
+    /* margin-top: 65px; */
+}
+
+.b-input{
+    font-size: 18px;
+    line-height: 26px;
+    height: 48px;
+    width: 100%;
+    background-color: #F0EADC;
+    /* background-color: none; */
+    border: none;
+    /* border-bottom: solid 2px #262626; */
+}
+
+.b-input:focus{
+    outline: none;
+}
+
+.control-group{
+    margin-top: 32px;
+}
+
+.b-registration__section_indent{
+    margin-top: 36px;
+}
+
+.b-registration__check{
+    margin-top: 16px;
+}
+
+button{
+    width: 100%;
+    height: 48px;
+    border: none;
+    font-size: 18px;
+    background-color: #FF3F05;
+    color: #F0EADC;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+button:disabled{
+    width: 100%;
+    height: 48px;
+    font-size: 18px;
+    border: none;
+    background-color: #ececec;
+    color: #2626267a;
+}
+
+/* Customize the label (the container) */
+.b-registration__accept {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    text-transform: lowercase;
+    line-height: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .b-registration__accept input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    height: 34px;
+    width: 34px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .b-registration__accept:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .b-registration__accept input:checked ~ .checkmark {
+    background-color: #FF3F05;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .b-registration__accept input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .b-registration__accept .checkmark:after {
+    left: 10px;
+    top: 4px;
+    width: 10px;
+    height: 16px;
+    border: solid #F0EADC;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+
+
+
+
+  /* Ошибка */
+.b-registration__error p{
+    background-color: #FF3F05;
+    font-size: 14px;
+    color: #F0EADC;
+    line-height: 16px;
+    text-transform: lowercase;
+    
+}
+
+.b-registration__section_no-bottom-space{
+    margin-top: 65px;
+    display: none;
+}
+
+.b-input-block_status_error .b-error-block {
+    display: block;
+}
+
+.b-error-block{
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.b-error{
+    font-size: 14px;
+    text-transform: lowercase;
+    color: #F0EADC;
+    line-height: 16px;
+    background-color: #FF3F05;
+    width: 458px;
+}
