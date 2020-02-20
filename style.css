@@ -111,6 +111,7 @@ a{
 
 .b-registration__section_indent{
     margin-top: 36px;
+    display: block !important;
 }
 
 .b-registration__check{
