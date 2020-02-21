@@ -47,7 +47,7 @@ a{
 }
 
 .svg-button:hover{
-    filter: grayscale(100%) sepia(100%);
+    filter: brightness(80%);
 }
 
 .b-reg-table__row{
