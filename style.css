@@ -9,6 +9,12 @@ html{
     color: #F0EADC;
 }
 
+@media only screen and (min-width: 1025px){
+    html{
+        zoom: 1.25
+    }
+}
+
 a{
     color: #FF3F05;
 }
@@ -93,7 +99,7 @@ a{
 .b-input{
     font-size: 18px;
     line-height: 26px;
-    height: 48px;
+    height: 36px;
     width: 100%;
     background-color: #F0EADC;
     /* background-color: none; */
