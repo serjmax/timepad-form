@@ -9,7 +9,7 @@ html{
     color: #F0EADC;
 }
 
-@media only screen and (min-width: 1025px){
+@media only screen and (min-width: 456px){
     html{
         zoom: 1.25
     }
