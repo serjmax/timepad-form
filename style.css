@@ -3,9 +3,15 @@
     src: url("fonts/ReproFamily-Regular.woff") format('woff');
 }
 
+:root {
+    --cream-color: #F0EADC;
+    --black-color: #262626;
+    --red-color: #FF3F05;
+  }
+
 html{
     font-family: Repro-Regular;
-    /* background-color: #262626; */
+    background-color: #262626;
     color: #F0EADC;
 }
 
@@ -33,12 +39,16 @@ a{
     font-size: 44px;
     line-height: 40px;
     margin-bottom: 0px;
+    margin-right: 8px;
 }
 
 .b-reg-table__text{
     text-transform: lowercase;
     font-size: 18px;
     line-height: 26px;
+    position: relative;
+    display: block;
+    margin-top: 8px;
 }
 
 .b-reg-table__plusminus-value.js-plusminus_display{
@@ -146,6 +156,9 @@ button:disabled{
     color: #2626267a;
 }
 
+
+
+
 /* Customize the label (the container) */
 .b-registration__accept {
     display: block;
@@ -160,18 +173,18 @@ button:disabled{
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-  }
+}
   
   /* Hide the browser's default checkbox */
-  .b-registration__accept input {
+.b-registration__accept input {
     position: absolute;
     opacity: 0;
     cursor: pointer;
     width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  .checkmark {
+}
+
+/* Create a custom checkbox */
+.checkmark {
     position: absolute;
     top: 0;
     left: 0;
@@ -179,32 +192,32 @@ button:disabled{
     height: 34px;
     width: 34px;
     background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .b-registration__accept:hover input ~ .checkmark {
+}
+
+/* On mouse-over, add a grey background color */
+.b-registration__accept:hover input ~ .checkmark {
     background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .b-registration__accept input:checked ~ .checkmark {
+}
+
+/* When the checkbox is checked, add a blue background */
+.b-registration__accept input:checked ~ .checkmark {
     background-color: #FF3F05;
-  }
-  
-  /* Create the checkmark/indicator (hidden when not checked) */
-  .checkmark:after {
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
     content: "";
     position: absolute;
     display: none;
-  }
-  
-  /* Show the checkmark when checked */
-  .b-registration__accept input:checked ~ .checkmark:after {
+}
+
+/* Show the checkmark when checked */
+.b-registration__accept input:checked ~ .checkmark:after {
     display: block;
-  }
-  
-  /* Style the checkmark/indicator */
-  .b-registration__accept .checkmark:after {
+}
+
+/* Style the checkmark/indicator */
+.b-registration__accept .checkmark:after {
     left: 10px;
     top: 4px;
     width: 10px;
@@ -214,20 +227,113 @@ button:disabled{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-  }
+}
 
 
 
 
 
-  /* Ошибка */
+
+
+
+.b-reg-table__cell-name_full-width{
+    display: flex;
+    flex-direction: row-reverse;
+    width: 456px;
+    justify-content: space-between;
+    height: 52px;
+    /* margin-bottom: 16px; */
+    /* padding: 8px; */
+    margin: 8px 0px -2px 0;
+}
+
+/* Customize the label (the container) */
+.b-reg-table__text_with_radio {
+    display: block;
+    /* position: relative; */
+    /* padding-left: 35px; */
+    /* margin-bottom: 12px; */
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 448px;
+    position: absolute;
+    height: 50px;
+    padding-left: 8px;
+    /* left: 0px; */
+    margin-top: 0;
+}
+
+/* Hide the browser's default radio button */
+.b-reg-table__text_with_radio input {
+position: absolute;
+opacity: 0;
+cursor: pointer;
+height: 0;
+width: 0;
+}
+
+/* Create a custom radio button */
+.checkmark-radio-btn {
+    /* border-radius: 50%; */
+    position: absolute;
+    top: -10px;
+    left: 0;
+    height: 56px;
+    width: 100%;
+    /* background-color: #eee; */
+    /* border-radius: 50%; */
+    z-index: -1;
+}
+
+/* On mouse-over, add a grey background color */
+.b-reg-table__text_with_radio:hover input ~ .checkmark-radio-btn {
+    border: solid 2px;
+    /* background-color: #2196F3; */
+}
+
+/* When the radio button is checked, add a blue background */
+.b-reg-table__text_with_radio input:checked ~ .checkmark-radio-btn {
+    border: solid 2px;
+    /* background-color: #2196F3; */
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark-radio-btn:after {
+content: "";
+position: absolute;
+display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.b-reg-table__text_with_radio input:checked ~ .checkmark-radio-btn:after {
+display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.b-reg-table__text_with_radio .checkmark-radio-btn:after {
+top: 9px;
+left: 9px;
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: var(--black-color);
+}
+
+
+
+
+
+/* Ошибка */
 .b-registration__error p{
     background-color: #FF3F05;
     font-size: 14px;
     color: #F0EADC;
     line-height: 16px;
     text-transform: lowercase;
-    
 }
 
 .b-registration__section_no-bottom-space{
