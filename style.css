@@ -17,7 +17,10 @@ html{
 
 @media only screen and (min-width: 457px){
     html{
-        zoom: 1.25
+        zoom: 1.25;
+    }
+    body{
+        height: 1444px;
     }
 }
 
