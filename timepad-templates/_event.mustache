@@ -1,0 +1,44 @@
+<div class="b-event js-section-event">
+    {{#event.image}}
+        <div class="b-event__pic" style="background-image: url('{{event.image}}');"></div>
+    {{/event.image}}
+    <h5 class="b-unit__header_size_small b-event__header">
+        {{{event.name}}}
+    </h5>
+
+    <div class="b-event__info">
+        {{#event.place}}
+            <div class="row-fluid b-event__info-elem">
+                <div class="span3 b-unit__text_size_small b-unit__text_color_gray">
+                    Место:
+                </div>
+                <div class="span9">
+                    <span class="b-unit__text_size_small b-unit__text_color_black">
+                        {{#event.city}}{{{event.city}}}, {{/event.city}}
+                        {{{event.place}}}
+                    </span>
+                </div>
+            </div>
+        {{/event.place}}
+        <div class="row-fluid b-event__info-elem">
+            <div class="span3 b-unit__text_size_small b-unit__text_color_gray">
+                Организатор:
+            </div>
+            <div class="span9">
+                <span class="b-unit__text_size_small b-unit__text_color_black">
+                    {{{event.organization_name}}}
+                </span>
+            </div>
+        </div>
+        <div class="row-fluid b-event__info-elem">
+            <div class="span3 b-unit__text_size_small b-unit__text_color_gray">
+                Время:
+            </div>
+            <div class="span9">
+                <span class="b-unit__text_size_small b-unit__text_color_black">
+                    {{event.datetime}}
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

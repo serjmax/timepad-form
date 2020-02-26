@@ -1,0 +1,120 @@
+<div class="row-fluid">
+    <div class="control-group b-reg-row {{#meta.dadata}}js-dadata{{/meta.dadata}}" data-formname="{{formname}}" data-tag="{{{tag}}}" data-type="{{{type}}}">
+        <label class="b-unit__text b-registration__question">
+            {{{name}}} {{#mandatory}}<span class="b-registration__question_mandatory">*</span>{{/mandatory}}
+        </label>
+
+        {{#text}}
+        <div class="b-input-block i-question-control">
+            <input type="text" name="{{formname}}" class="span12 b-input" autocomplete="nein" value="{{{value}}}">
+        </div>
+        {{/text}}
+
+        {{#bigtext}}
+        <div class="b-input-block i-question-control">
+            <textarea rows="3" class="span12 b-input b-input_type_textarea" name="{{formname}}" autocomplete="nein">{{{value}}}</textarea>
+        </div>
+        {{/bigtext}}
+
+        {{#radio}}
+        <div class="b-registration__check-block i-question-control">
+            {{^meta.radioselect}}
+                {{^mandatory}}
+                    <div class="b-input-block">
+                        <label class="b-registration__label">
+                            <input class="b-radio" type="radio" value="0" name="{{formname}}" checked="checked">
+                            <span>Предпочитаю не указывать</span>
+                        </label>
+                    </div>
+                {{/mandatory}}
+                {{#vars_unfold}}
+                    <div class="b-input-block">
+                        <label class="b-registration__label">
+                            <input class="b-radio" type="radio" value="{{num}}" name="{{formname}}" {{#checked}}checked="checked"{{/checked}}>
+                            <span>{{text}}</span>
+                        </label>
+                    </div>
+                {{/vars_unfold}}
+            {{/meta.radioselect}}
+
+            {{#meta.radioselect}}
+                <div class="b-input-block">
+                    <select name="{{formname}}">
+                        {{^mandatory}}
+                            <option value="0">Предпочитаю не указывать</option>
+                        {{/mandatory}}
+                        {{#vars_unfold}}
+                            <option value="{{num}}" {{#checked}}selected="selected"{{/checked}}>{{text}}</option>
+                        {{/vars_unfold}}
+                    </select>
+                </div>
+            {{/meta.radioselect}}
+        </div>
+        {{/radio}}
+
+        {{#multivar}}
+        <div class="b-registration__check-block i-question-control">
+            {{#vars_unfold}}
+                <div class="b-input-block">
+                    <label class="b-registration__label">
+                        <input type="checkbox" class="b-radio" value="{{num}}" value="{{aname}}" name="{{aname}}" {{#checked}}checked="checked"{{/checked}}>
+                        <span>{{text}}</span>
+                    </label>
+                </div>
+            {{/vars_unfold}}
+        </div>
+        {{/multivar}}
+
+        {{#upload}}
+        <div class="i-question-control">
+            <input type="hidden"
+                name="{{formname}}"
+                role="uploadcare-uploader-outer"
+                data-autostore="true"
+                data-public-key="{{event.uc_publickey}}"
+                data-locale="{{event.locale}}"
+                data-tabs="file url dropbox vk"
+                data-images-only="false"
+                data-path-value="true"
+                data-preview-step="false"
+                data-clearable="false"
+                data-multiple="false"
+                data-crop="disabled" />
+        </div>
+        {{/upload}}
+
+
+        {{#phone}}
+            <div class="b-input-block i-question-control">
+                <input type="text" name="{{formname}}" data-phone-verify="{{formname}}" class="js-tpphone {{#uses_phone_verify}}js-verify-phone{{/uses_phone_verify}} span12 b-input" value="{{{value}}}">
+            </div>
+        {{/phone}}
+
+        {{#description}}<span class="help-block b-registration__question_comment">{{{description}}}</span>{{/description}}
+    </div>
+</div>
+
+{{#phone}}
+    {{#uses_phone_verify}}
+    <div class="row-fluid {{^mandatory}}js-verify-block-hideble hide{{/mandatory}}" data-phone-verify="{{formname}}">
+        <div class="control-group b-reg-row">
+            <label class="b-unit__text b-registration__question js-verify-label js-verify-label_nophone">Подтверждение телефона</label>
+            <div class="twf2-danger-plate js-verify-info js-verify-info-danger twf2-unit" data-phone-verify="{{formname}}" style="display: none;"></div>
+            <button class="b-pro-wiget__button b-pro-widget__small-button js-verify-btn" disabled="disabled" type="button" data-phone-verify="{{formname}}">Выслать код по SMS</button>
+
+            <label class="b-unit__text b-registration__question js-verify-label" style="display: none;">Код подтверждения</label>
+            <div class="twf2-warning-plate js-verify-info js-verify-info-warning twf2-unit" data-phone-verify="{{formname}}" style="display: none;">
+                На указанный номер выслан код. Введите этот код для подтверждения вашего телефона. Если по каким-либо причинам код не пришел, отправить новый код можно по ссылке ниже.
+            </div>
+            <div class="twf2-success-plate js-verify-info js-verify-info-success twf2-unit" data-phone-verify="{{formname}}" style="display: none;">
+                Код верный! Ваш телефон подтвержден, спасибо :)
+            </div>
+            <input type="text" name="{{phone_verify_formname}}" class="span12 b-input js-verify-code" autocomplete="nein" value="" style="display: none" data-phone-verify="{{formname}}">
+
+            <span class="help-block b-registration__question_comment js-verify-desc js-verify-desc_nophone" data-phone-verify="{{formname}}">Сначала неообходимо ввести телефон</span>
+            <span class="help-block b-registration__question_comment js-verify-desc js-verify-desc_preresend" data-phone-verify="{{formname}}" style="display: none;">Повторно отправить код можно будет через <span class="js-verify-timer">00:00</span></span>
+            <a href="#" class="help-block b-registration__question_comment js-verify-desc js-verify-desc_resend js-verify-resend" data-phone-verify="{{formname}}" style="display: none;">Отправить код еще раз</a>
+        </div>
+    </div>
+    {{/uses_phone_verify}}
+{{/phone}}

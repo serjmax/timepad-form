@@ -1,0 +1,54 @@
+<div class="b-registration__section b-registration__section_indent section-ank js-section-ank">
+    {{! Блок с полями формы }}
+    <div class="b-attendees">
+    {{#attendees}}
+        {{> _attendee_form}}
+    {{/attendees}}
+    </div>
+</div>
+
+<div class="b-registration__section section-submit b-registration__section_indent">
+    <div class="b-registration__check">
+        {{#event.uses_subscribe}}
+            <div class="b-registration__check-block">
+                <label class="b-registration__accept">
+                    <input type="checkbox" name="subscribe" checked="checked">
+                    <span>Я хочу получать анонсы событий этого организатора по электронной почте</span>
+                </label>
+            </div>
+        {{/event.uses_subscribe}}
+    </div>
+
+    <div class="b-registration__check" data-formname="accepted_terms">
+        <div class="b-registration__check-block i-question-control">
+            <label class="b-registration__accept">
+                <input type="checkbox" name="accepted_terms">
+                {{!АХТУНГ! Кусок стринга локализуется вместе со ссылкой, с «Я подтверждаю» по одинокое «и». Если меняете ссылку, не забудьте подправить `../locales/en.yaml`}}
+                <span>Я подтверждаю свое согласие с условиями <a href="{{event.domain}}/org/user_agreement" target="_blank">Пользовательского соглашения</a> и <a href="{{event.domain}}event/oferta/{{event.id}}" target="_blank">Договором оказания услуг по организации мероприятия и политикой возвратов</a><span class="b-registration__question_mandatory">*</span></span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="b-registration__section section-submit b-registration__section_indent js-section-submit">
+
+    <button class="b-pro-wiget__reg-button" name="submit_register" id="eventreg_submit">Зарегистрироваться</button>
+
+    {{> _button_terms_popup}}
+
+    {{#event.uses_acquirings}}
+    <div class="b-registration__acquirings b-acquirings js-acquirings">
+        {{#show_vkpay_button}}
+        <img class="b-acquirings__vkpay" src="{{host}}img/twf2/acquirings/vkpay.png">
+        {{/show_vkpay_button}}
+
+        {{#event.acquirings}}
+        <img class="b-acquirings__{{.}}" src="{{host}}img/twf2/acquirings/{{.}}.png">
+        {{/event.acquirings}}
+    </div>
+    {{/event.uses_acquirings}}
+
+    <!--p class="b-registration__terms">
+        Поля, отмеченные звездочкой (<span class="b-registration__question_mandatory">*</span>), нужно обязательно заполнить
+    </p-->
+</div>

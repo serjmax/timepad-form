@@ -1,0 +1,132 @@
+<div class="b-registration__section js-section-selectTickets">
+    {{#event.uses_ticket_choice}}
+    {{#event.tickets.length}}
+    <h5 class="b-unit__header_size_small b-registration__header b-indentable">
+        {{#event.uses_multireg}}
+            Выберите тип билетов:
+        {{/event.uses_multireg}}
+
+        {{^event.uses_multireg}}
+            {{#event.has_active_places}}
+                Или выберите тип билета:
+            {{/event.has_active_places}}
+
+            {{^event.has_active_places}}
+                Выберите тип билета:
+            {{/event.has_active_places}}
+        {{/event.uses_multireg}}
+    </h5>
+    {{/event.tickets.length}}
+    {{/event.uses_ticket_choice}}
+
+    {{^event.promocode_locked}}
+    <div class="row-fluid b-reg-table b-reg-table_type_striped">
+        <div class="span12">
+            {{#event.uses_ticket_choice}}
+                {{#event.tickets.length}}
+                <div class="row-fluid b-reg-table__row b-reg-table__row_header">
+                    <div class="{{#event.uses_multireg}}span6{{/event.uses_multireg}}{{^event.uses_multireg}}span9{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-name">
+                        <h3 class="b-reg-table__header b-reg-table__text">Тип билета</h3>
+                    </div>
+
+                    <div class="span3 b-reg-table__cell b-reg-table__cell-price">
+                        <h3 class="b-reg-table__header b-reg-table__text">Цена</h3>
+                    </div>
+
+                    {{#event.uses_multireg}}
+                        <div class="span2 b-reg-table__cell b-reg-table__cell-count">
+                            <h3 class="b-reg-table__header b-reg-table__text">
+                                <span>Кол&#8209;во</span>
+                            </h3>
+                        </div>
+                    {{/event.uses_multireg}}
+                </div>
+                {{/event.tickets.length}}
+
+                {{#event.tickets}}
+                <div class="row-fluid b-reg-table__row {{#has_promocode}}b-reg-table__row_type_promo{{/has_promocode}}" id="rei_cont_{{id}}">
+
+                    <div class="{{#event.uses_multireg}}span6{{/event.uses_multireg}}{{^event.uses_multireg}}span9{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-name {{^event.uses_multireg}}b-reg-table__cell-name_full-width{{/event.uses_multireg}}">
+                        <label class="b-reg-table__text {{^event.uses_multireg}} b-reg-table__text_with_radio{{/event.uses_multireg}}" for="rei_{{id}}">
+                            {{^event.uses_multireg}}
+                                <input {{#force_check}}checked="checked"{{/force_check}} type="radio" class="b-reg-table__select b-radio_where_table" name="re_id" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}" {{^available}}disabled="disabled"{{/available}}>
+                            {{/event.uses_multireg}}
+                            {{{name}}}
+                        </label>
+
+                        <div class="b-reg-table__price-mobile{{^event.uses_multireg}} b-reg-table__price-mobile_non-multireg{{/event.uses_multireg}}">
+                            <span>{{h_price}}</span>
+                        </div>
+
+                        {{#comment}}
+                            <span class="help-block b-reg-table__category-description
+                            {{^event.uses_multireg}}b-reg-table__category-description_type_multireg{{/event.uses_multireg}}">{{{comment}}}</span>
+                        {{/comment}}
+
+                        {{#text_tickets_remain}}
+                            <span class="help-block b-reg-table__category-description
+                            {{^event.uses_multireg}}b-reg-table__category-description_type_multireg{{/event.uses_multireg}}">{{{text_tickets_remain}}}</span>
+                        {{/text_tickets_remain}}
+
+                        {{^event.uses_multireg}}
+                            <span class="help-block b-reg-table__category-description b-reg-table__category-description_type_multireg">Закрытие регистрации {{ttl}}</span>
+                        {{/event.uses_multireg}}
+                    </div>
+
+                    <div class="span3 span3_fixed-width b-reg-table__cell b-reg-table__cell-price">
+                        <span class="b-reg-table__text b-not-bold">{{h_price}}</span>
+                    </div>
+                    <div class="{{#event.uses_multireg}}span2{{/event.uses_multireg}}{{^event.uses_multireg}}span4{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-count">
+                        {{#available}}
+                            {{#event.uses_multireg}}
+                                {{^settings.use_plusminus}}
+                                <select class="b-reg-table__select" name="res[{{id}}]" data-reid="{{id}}" id="rei_{{id}}">
+                                    <option value="0">&mdash;</option>
+                                    {{#ticket_choices}}
+                                        <option value="{{val}}" {{#selected}}selected="selected"{{/selected}}>{{val}}</option>
+                                    {{/ticket_choices}}
+                                </select>
+                                {{/settings.use_plusminus}}
+
+                                {{#settings.use_plusminus}}
+                                    <div class="b-reg-table__plusminus js-plusminus" data-plusminus-min="{{min}}" data-plusminus-max="{{max}}">
+                                        <button class="b-reg-table__plusminus_btn not-touch js-svoge-fallback js-plusminus_minus" type="button">
+                                            <img src="{{host}}img/svoge-pixel.png" alt="" class="svoge" data-svoge="svg-twf2-plusminus-minus" data-svoge-class="">
+                                        </button>
+
+                                        <span class="b-reg-table__plusminus-value js-plusminus_display">{{default_count}}</span>
+
+                                        <input class="js-tickets_count_input js-plusminus_value" type="hidden" name="res[{{id}}]" data-reid="{{id}}" id="rei_{{id}}" autocomplete="nein" value="{{default_count}}">
+
+                                        <button class="b-reg-table__plusminus_btn js-svoge-fallback not-touch js-plusminus_plus" type="button">
+                                            <img src="{{host}}img/svoge-pixel.png" alt="" class="svoge" data-svoge="svg-twf2-plusminus-plus" data-svoge-class="">
+                                        </button>
+                                    </div>
+                                {{/settings.use_plusminus}}
+                            {{/event.uses_multireg}}
+                        <span class="hide multiank_counter b-reg-table__text">0</span>
+                        {{/available}}
+                        {{^available}}
+                            недоступно
+                        {{/available}}
+                    </div>
+
+                </div>
+                {{/event.tickets}}
+            {{/event.uses_ticket_choice}}
+
+            {{^event.uses_ticket_choice}}
+                {{#event.tickets}}
+                    <input type="hidden" name="re_id" class="b-reg-table__hidden" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}">
+                {{/event.tickets}}
+            {{/event.uses_ticket_choice}}
+            
+            <div class="row-fluid b-reg-table__row">
+                <div class="span12 b-reg-table__cell">
+                    <div class="selectedTicketsInfo b-reg-table__text"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/event.promocode_locked}}
+</div>

@@ -1,0 +1,31 @@
+<div class="b-attendee b-attendee-{{num}} {{#isFirst}}b-attendee-main{{/isFirst}} {{#event.uses_multiank}}b-attendee-divide{{/event.uses_multiank}}">
+{{#event.uses_multiank}}
+    <div class="b-multiank-attendee">
+        <div class="b-registration__question-number" {{#isSeated}}style="background-color: {{seatedInfo.cat.color}};"{{/isSeated}}>
+            Участник №{{displayNum}}
+        </div>
+
+        {{#event.uses_ticket_choice}}
+                <span class="change-attendee-re" data-attendee-num="{{num}}">
+                    {{^isSeated}}
+                        {{> _re_selector}}
+                    {{/isSeated}}
+                    {{#isSeated}}
+                        <select class="attendee-re" disabled="disabled">
+                            <option value="{{seatedInfo.cat.id}}" class="attendee-re-option-{{seatedInfo.cat.id}}">
+                                {{seatedInfo.cat.name}} {{#seatedInfo.placeHuman}}({{seatedInfo.placeHuman}}){{/seatedInfo.placeHuman}}
+                            </option>
+                        </select>
+                    {{/isSeated}}
+                </span>
+        {{/event.uses_ticket_choice}}
+
+        {{#deletable}}
+            <a href="#" class="remove-attendee">Удалить</a>
+        {{/deletable}}
+    </div>
+{{/event.uses_multiank}}
+{{#questionsSet}}
+    {{> _question}}
+{{/questionsSet}}
+</div>

@@ -1,0 +1,64 @@
+{{#event}}
+
+    <div class="b-more b-main">
+        <div class="js-aphisha b-aphisha b-aphisha_single" style="background-image: url({{image}});">
+            <div class="b-aphisha__heading-container" {{#poster_rgba_color}}style="background-color: {{poster_rgba_color}};"{{/poster_rgba_color}}>
+
+                <div class="b-aphisha__extended-top">
+                    <a class="tpw_event_info_back" href="#">
+                        <img class="svoge" src="%host%/img/svoge-pixel.png" data-svoge="svg-twf2-back">
+                        Назад
+                    </a>
+                </div>
+
+                <div class="b-aphisha__extended-heading">
+                    {{name}}
+                </div>
+
+                <div class="b-aphisha__extended-info">
+                    <p>
+                        <img class="svoge" src="%host%/img/svoge-pixel.png" data-svoge="svg-twf2-datetime">
+                        {{^is_now}}
+                            {{#is_part_of_series}}
+                                Ближайшее:
+                            {{/is_part_of_series}}
+                            {{{event.datetime}}}
+                        {{/is_now}}
+                        {{#is_now}}
+                            <span class="b-pro-wiget__day">Идёт сейчас</span>
+                        {{/is_now}}
+                    </p>
+                    {{#event.city}}
+                        <p>
+                        <img class="svoge" src="%host%/img/svoge-pixel.png" data-svoge="svg-twf2-place">
+                        {{event.city}}{{#event.place}}, {{event.place}}{{/event.place}}
+                        </p>
+                    {{/event.city}}
+                </div>
+
+            </div>
+        </div>
+
+
+        <a href="#{{#reg_open}}regform{{/reg_open}}" class="{{^reg_open}}disable{{/reg_open}} b-pro-wiget__reg-button">
+            {{buttonText}}
+        </a>
+
+
+        <div class="b-pro-wiget__descriprion-full">
+        {{{description}}}
+        </div>
+
+        <a name="regform" id="eventreg_widget_anchor"></a>
+
+        <div class="b-pro-wiget__back-2-top">
+            <a class="js-back-2-top-a b-pro-wiget__back-2-top-a" href="#">
+                <img src="%host%/img/svoge-pixel.png" alt="" class="svoge svg-twf2-back-2-top" data-svoge="svg-twf2-back-2-top" data-svoge-class="">
+                Наверх
+            </a>
+        </div>
+
+        <script {{#eventreg_widget_customization_id}}data-timepad-customized="{{eventreg_widget_customization_id}}"{{/eventreg_widget_customization_id}} id="eventreg_widget" defer="defer" data-timepad-widget-v2="event_register" data-src="{{host}}/js/tpwf/loader/min/loader.js"></script>
+
+    </div>
+{{/event}}      

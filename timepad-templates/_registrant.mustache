@@ -1,0 +1,32 @@
+<h5 class="b-unit__header_size_small b-registration__header">
+    Информация о заказчике
+</h5>
+
+<div class="b-event__info">
+    {{^event.uses_order_email}}
+    <div class="row-fluid b-event__info-elem">
+        <div class="span2">
+            <span class="b-unit__text b-unit__text_color_gray">
+            Имя:
+            </span>
+        </div>
+        <div class="span6">
+            <span class="b-unit__text b-unit__text_color_black">
+            {{{order.registration.firstname}}} {{{order.registration.surname}}}
+            </span>
+        </div>
+    </div>
+    {{/event.uses_order_email}}
+    <div class="row-fluid b-event__info-elem">
+        <div class="span2">
+            <span class="b-unit__text b-unit__text_color_gray">
+            E-mail:
+            </span>
+        </div>
+        <div class="span6">
+            <span class="b-unit__text b-unit__text_color_black">
+                {{order.email}}
+            </span>
+        </div>
+    </div>
+</div>

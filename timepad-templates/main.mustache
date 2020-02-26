@@ -1,0 +1,12 @@
+<div class="i-page">
+    <form id="eventreg_form" action="{{event.domain}}event/widget_register/{{event.id}}">
+        {{! Основной блок покупки билета }}
+        {{> _selectTickets}}
+        {{! Этот блок выводит ошибки в форме }}
+        <div class="b-registration__section b-registration__section_no-bottom-space">
+            <div class="b-registration__error hide"></div>
+        </div>
+        {{! Основной блок покупки билета }}
+        {{> _ank }}
+    </form>
+</div>
