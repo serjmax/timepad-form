@@ -13,6 +13,9 @@
     </style>
 </head>
 <body>
+    <!-- data-twf2s-event--id="1242039" -->
+    <!-- data-twf2s-event--id="1249506" -->
+    <!-- 1244590 -->
 
     <script type="text/javascript" 
             async="async" 
@@ -20,7 +23,7 @@
             charset="UTF-8" 
             src="https://timepad.ru/js/tpwf/loader/min/loader.js" 
             data-timepad-customized="37364" 
-            data-twf2s-event--id="1242039" 
+            data-twf2s-event--id="1249506"
             data-timepad-widget-v2="event_register">
         (function() {
         return {
@@ -81,8 +84,16 @@
                                     </div>
                                     {{! Название вида билета, его можно сделать описанием билета }}
                                     <label class="b-reg-table__text {{^event.uses_multireg}} b-reg-table__text_with_radio{{/event.uses_multireg}}" for="rei_{{id}}">
-                                        {{{name}}}
+                                        {{^event.uses_multireg}}
+                                            
+                                            <input {{#force_check}}checked="checked"{{/force_check}} type="radio" class="b-reg-table__select b-radio_where_table" name="re_id" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}" {{^available}}disabled="disabled"{{/available}}>
+                                            <span class="checkmark-radio-btn"></span>
+                                            
+                                            </input>
+                                        {{/event.uses_multireg}}
+                                        <span style="top:-6px; position:relative;">{{{name}}}</span>
                                     </label>
+                                    
                                 </div>
 
 
@@ -218,3 +229,4 @@
     </script>
 </body>
 </html>
+
