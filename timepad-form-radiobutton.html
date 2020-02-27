@@ -35,7 +35,8 @@
             "overrideTemplates": {
             "main": "#mainTplMy",
             "_ank": "#_ankTplMy",
-            "_selectTickets": "#_selectTicketsTplMy"
+            "_selectTickets": "#_selectTicketsTplMy",
+            "pay": "#payTplMy"
             }
         };
         })();
@@ -226,6 +227,37 @@
                 Поля, отмеченные звездочкой (<span class="b-registration__question_mandatory">*</span>), нужно обязательно заполнить
             </p-->
         </div>  
+    </script>
+
+
+
+
+
+
+
+    <script type="text/mustache" id="payTplMy">
+        <div class="i-page">
+
+            <div class="b-registration__section b-registration__section_indent">
+                {{#order.payment.paymentMethods}}
+                    <div class="b-payment">
+                        <span class="b-payment-mytpmpl__header">способ оплаты</span>
+                        {{> _timer}}
+                        {{#order.payment.cardPaymentActive}}
+                            {{#order.payment.paymentMethods.link.length}}
+                                <h5 class="b-unit__header_size_small b-registration__header">Или выберите другой способ оплаты:</h5>
+                            {{/order.payment.paymentMethods.link.length}}
+                        {{/order.payment.cardPaymentActive}}
+
+                        {{#order.payment.paymentMethods.link}}
+                            <a class="b-payment-mytpmpl__link" href="{{#available}}{{url}}{{/available}}{{^available}}javascript:false{{/available}}" class="b-payment__method {{#available}}redirect{{/available}} {{^available}}b-payment__method-disabled{{/available}}">
+                                <span class="b-payment__method-label">{{label}}</span>
+                            </a>
+                        {{/order.payment.paymentMethods.link}}
+                    </div>
+                {{/order.payment.paymentMethods}}
+            </div>
+        </div>
     </script>
 </body>
 </html>
