@@ -11,7 +11,7 @@
 
 html{
     font-family: Repro-Regular;
-    /* background-color: #262626; */
+    background-color: #262626;
     color: #F0EADC;
 }
 
@@ -362,4 +362,76 @@ background: var(--black-color);
     line-height: 16px;
     background-color: #FF3F05;
     width: 458px;
+}
+
+
+
+
+
+
+
+
+.b-payment{
+    display: flex;
+    flex-direction: column;
+}
+
+.b-payment-mytpmpl__header{
+    text-transform: lowercase;
+    font-size: 32px;
+    line-height: 32px;
+    color: var(--cream-color);
+    /* margin-bottom: 16px; */
+}
+
+.b-payment-mytpmpl__link{
+    font-size: 18px;
+    line-height: 26px;
+    color: var(--cream-color);
+    height: 72px;
+    display: flex;
+    align-content: center;
+    background-color: #393939;
+    margin-bottom: 24px;
+    align-items: center;
+    cursor: pointer;
+    text-transform: lowercase;
+    text-decoration: none;
+    padding-left: 8px;
+}
+
+.b-payment-mytpmpl__link:hover{
+    border: solid 2px var(--cream-color);
+    box-sizing: border-box;
+}
+
+.b-payment-mytpmpl__link:focus{
+    border: solid 2px var(--cream-color);
+    box-sizing: border-box;
+}
+
+.js-timer{
+    /* display: flex;
+    flex-direction: row; */
+    margin-bottom: 16px;
+}
+
+.twf2-timer .twf2-timer__left {
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--cream-color);
+}
+
+.js-timer .twf2-timer-text_retry {
+    display: none;
+}
+
+.js-timer .js-timer-retry {
+    display: none;
+}
+
+.twf2-timer .twf-2-timer__retry-btn{
+    font-size: 14px;
+    line-height: 16px;
+    color: var(--cream-color);
 }
