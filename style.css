@@ -129,8 +129,8 @@ a{
 }
 
 .b-registration__section_indent{
-    margin-top: 36px;
-    display: block !important;
+    /* margin-top: 36px; */
+    /* display: block !important; */
 }
 
 .b-registration__check{
@@ -384,7 +384,7 @@ background: var(--black-color);
     /* margin-bottom: 16px; */
 }
 
-.b-payment-mytpmpl__link{
+.b-payment__method{
     font-size: 18px;
     line-height: 26px;
     color: var(--cream-color);
@@ -400,12 +400,12 @@ background: var(--black-color);
     padding-left: 8px;
 }
 
-.b-payment-mytpmpl__link:hover{
+.b-payment__method:hover{
     border: solid 2px var(--cream-color);
     box-sizing: border-box;
 }
 
-.b-payment-mytpmpl__link:focus{
+.b-payment__method:focus{
     border: solid 2px var(--cream-color);
     box-sizing: border-box;
 }
