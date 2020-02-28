@@ -23,10 +23,11 @@
             charset="UTF-8" 
             src="https://timepad.ru/js/tpwf/loader/min/loader.js" 
             data-timepad-customized="37364" 
-            data-twf2s-event--id="1249506"
+            data-twf2s-event--id="1244590"
             data-timepad-widget-v2="event_register">
         (function() {
         return {
+            "hideFormsWhenNoTickets": false,
             "loadCSS": [
                 "style.css"
             ],
@@ -36,7 +37,7 @@
             "main": "#mainTplMy",
             "_ank": "#_ankTplMy",
             "_selectTickets": "#_selectTicketsTplMy",
-            "payTplMy": "#payTplMy"
+            "pay": "#payTplMy"
             }
         };
         })();
@@ -237,139 +238,25 @@
 
     <script type="text/mustache" id="payTplMy">
         <div class="i-page">
-            {{#isInTimepad}}
-            <div class="b-registration__section_indent">
-                {{^isInPaymentPage}}
-                    <h1 class="b-payment__header">
-                        Оплата участия
-                        <div class="b-payment__help">
-                            <a target="_blank" href="http://help.timepad.ru/5588?kb_language={{#event.locale_ru}}ru_RU{{/event.locale_ru}}{{^event.locale_ru}}en_US{{/event.locale_ru}}">
-                                <img class="svoge" src="%host%/img/svoge-pixel.png" data-svoge="glyphicon-question-sign"> Как оплатить, получить или вернуть билет?
-                            </a>
-                        </div>
-                    </h1>
-
-                    {{#showEventDetailsAtPayment}}
-                    {{! При оплате по ссылке — подробная инфа о событии !}}
-                        <div class="b-payment__info">
-                            <h5 class="b-payment__info-header">Информация о событии</h5>
-
-                            <table class="b-payment__info-body">
-                                {{#event.name}}
-                                    <tr>
-                                        <td class="b-payment__info-field">Название</td>
-                                        <td class="b-payment__info-value">{{{event.name}}}</td>
-                                    </tr>
-                                {{/event.name}}
-                                {{#event.datetime}}
-                                    <tr>
-                                        <td class="b-payment__info-field">Дата</td>
-                                        <td class="b-payment__info-value">{{event.datetime}}</td>
-                                    </tr>
-                                {{/event.datetime}}
-                                {{#event.place}}
-                                    <tr>
-                                        <td class="b-payment__info-field">Адрес</td>
-                                        <td class="b-payment__info-value">{{#event.city}}{{event.city}}, {{/event.city}}{{{event.place}}}</td>
-                                    </tr>
-                                {{/event.place}}
-                            </table>
-                        </div>
-                    {{/showEventDetailsAtPayment}}
-                {{/isInPaymentPage}}
-            </div>
-            {{/isInTimepad}}
-
-            {{! #event.image}}
-                {{! > _header_image}}
-            {{! /event.image}}
-
-            <div class="b-registration__section b-registration__section_indent">
-                {{^isInTimepad}}
-                    <h2 class="b-unit__header b-unit__header_size_mid  b-unit__header_payment_main">
-                        Оплата участия
-                    </h2>
-
-                    {{> _registrant}}
-                {{/isInTimepad}}
-            </div>
-
-            {{> _order}}
-
-            {{> _branding }}
-
-            {{> _timer}}
-
-
-            {{#order.payment.cardCloudPaymentActive}}
-                {{> _cloudpay}}
-            {{/order.payment.cardCloudPaymentActive}}
-
 
             <div class="b-registration__section b-registration__section_indent">
                 {{#order.payment.paymentMethods}}
-
                     <div class="b-payment">
+                        <span class="b-payment-mytpmpl__header">способ оплаты</span>
+                        {{> _timer}}
                         {{#order.payment.cardPaymentActive}}
                             {{#order.payment.paymentMethods.link.length}}
                                 <h5 class="b-unit__header_size_small b-registration__header">Или выберите другой способ оплаты:</h5>
                             {{/order.payment.paymentMethods.link.length}}
                         {{/order.payment.cardPaymentActive}}
 
-                        {{#show_vkpay_button}}
-                            <h5 class="b-unit__header_size_small b-registration__header">Оплатите с помощью VK Pay:</h5>
-
-                            <a href="#" class="b-payment__method b-payment__method_vkpay js-vkpay">
-                                <img class="b-payment__vkpay-btn-logo" src="{{host}}img/paybutton/vkpay_big.png">
-                            </a>
-                        {{/show_vkpay_button}}
-
-                        {{^order.payment.cardPaymentActive}}
-                            <h5 class="b-unit__header_size_small b-registration__header">
-                                {{#show_vkpay_button}}
-                                    Или выберите другой способ оплаты:
-                                {{/show_vkpay_button}}
-                                {{^show_vkpay_button}}
-                                    Выберите способ оплаты:
-                                {{/show_vkpay_button}}
-                            </h5>
-                        {{/order.payment.cardPaymentActive}}
-
                         {{#order.payment.paymentMethods.link}}
                             <a href="{{#available}}{{url}}{{/available}}{{^available}}javascript:false{{/available}}" class="b-payment__method {{#available}}redirect{{/available}} {{^available}}b-payment__method-disabled{{/available}}">
-                                <img class="b-payment__method-icon" src="{{host}}img/paybutton/{{button}}_ru.png">
                                 <span class="b-payment__method-label">{{label}}</span>
-                                {{#comment}}<span class="b-payment__method-comment">{{comment}}</span>{{/comment}}
                             </a>
                         {{/order.payment.paymentMethods.link}}
                     </div>
-
-                    {{#order.payment.topComission}}
-                        <div class="b-registration__notice">
-                            Сумма включает сервисный сбор: {{order.payment.topComission_human}}
-                        </div>
-                    {{/order.payment.topComission}}
-
-                    {{#order.pay_till}}
-                        <!--div class="b-registration__notice">
-                            <div class="b-registration__notice-heading">Внимание!</div>
-                            Время брони билета ограничено. Бронь будет снята {{order.pay_till_relative}}.
-                        </div-->
-                    {{/order.pay_till}}
                 {{/order.payment.paymentMethods}}
-
-                {{^order.payment.paymentMethods}}
-                    <div class="b-registration__notice no-contract__notice">
-                        К сожалению, организатор этого события решил не продавать билеты он-лайн. Чтобы узнать, как вы можете оплатить свое участие, свяжитесь с ним.
-
-                        <div class="send-pay-request">
-                            <a href="#" class="b-pro-widget__btn_small">Отправить заявку на оплату</a>
-                        </div>
-                    </div>
-                {{/order.payment.paymentMethods}}
-
-                {{> _support}}
-                {{> _faq}}
             </div>
         </div>
     </script>
