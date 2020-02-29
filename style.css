@@ -15,14 +15,14 @@ html{
     color: #F0EADC;
 }
 
-@media only screen and (min-width: 457px){
+/* @media only screen and (min-width: 457px){
     html{
         zoom: 1.25;
     }
     body{
         height: 1444px;
     }
-}
+} */
 
 a{
     color: #FF3F05;
@@ -81,7 +81,7 @@ a{
 }
 
 #rei_cont_3160056{
-    margin-top: 30px;
+    margin-top: 8px;
 }
 
 .selectedTicketsInfo{
@@ -101,8 +101,8 @@ a{
 
 .b-registration__question{
     text-transform: lowercase;
-    font-size: 18px;
-    line-height: 26px;
+    font-size: 14px;
+    line-height: 16px;
 }
 
 .section-ank{
@@ -125,7 +125,7 @@ a{
 }
 
 .control-group{
-    margin-top: 32px;
+    margin-top: 16px;
 }
 
 .b-registration__section_indent{
