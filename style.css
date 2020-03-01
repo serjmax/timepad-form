@@ -10,7 +10,7 @@
   }
 
 html{
-    font-family: Repro-Regular;
+    font-family: Repro-Regular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     background-color: #262626;
     color: #F0EADC;
 }
