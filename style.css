@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Repro-Regular";
-    src: url("fonts/ReproFamily-Regular.woff") format('woff');
+    src: url("https://raw.githack.com/serjmax/timepad-form/master/fonts/Repro-Regular.woff") format('woff');
 }
 
 :root {
