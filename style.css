@@ -15,14 +15,14 @@ html{
     color: #F0EADC;
 }
 
-@media only screen and (min-width: 457px){
+/* @media only screen and (min-width: 457px){
     html{
         zoom: 1.25;
     }
     body{
         height: 1444px;
     }
-}
+} */
 
 a{
     color: #FF3F05;
