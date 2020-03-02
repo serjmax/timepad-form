@@ -30,7 +30,8 @@ a{
 
 #tpw_cont{
     padding-top: 2px;
-    width: 456px;
+    width: 450px;
+    overflow: hidden;
 }
 
 .b-reg-table_type_striped{
