@@ -18,166 +18,185 @@
     <!-- 1244590 -->
 
     <script type="text/javascript" 
-            async="async" 
-            defer="defer" 
-            charset="UTF-8" 
-            src="https://timepad.ru/js/tpwf/loader/min/loader.js" 
-            data-timepad-customized="37364" 
-            data-twf2s-event--id="1241130"
-            data-timepad-widget-v2="event_register">
-        (function() {
-        return {
-            "hideFormsWhenNoTickets": false,
-            "noScrollToWidgetOnViewChange": false,
-            "hidePreloading": true,
-            "loadCSS": [
-                "style.css"
-            ],
-            "skipBaseCSS": true,
-            "disableBootstrap": true,
-            "overrideTemplates": {
-            "main": "#mainTplMy",
-            "_ank": "#_ankTplMy",
-            "_selectTickets": "#_selectTicketsTplMy",
-            "pay": "#payTplMy"
-            }
-        };
-        })();
-    </script>
+        async="async" 
+        defer="defer" 
+        charset="UTF-8" 
+        src="https://timepad.ru/js/tpwf/loader/min/loader.js" 
+        data-timepad-customized="37364" 
+        data-twf2s-event--id="1241130"
+        data-timepad-widget-v2="event_register">
+    (function() {
+    return {
+    	"iframe": {
+    		"autoHeight": true
+    	},
+        "hideFormsWhenNoTickets": false,
+        "loadCSS": [
+            "style.css"
+        ],
+        "skipBaseCSS": true,
+        "disableBootstrap": true,
+        "overrideTemplates": {
+        "main": "#mainTplMy",
+        "pay": "#payTplMy",
+        "_ank": "#_ankTplMy",
+        "_selectTickets": "#_selectTicketsTplMy",
+        }
+    };
+    })();
+</script>
 
 
 
 
+<script type="text/mustache" async="async" id="payTplMy">
+    <div class="i-page">
+        <div class="b-registration__section b-registration__section_indent">
+            {{#order.payment.paymentMethods}}
+                <div class="b-payment">
+                    <span class="b-payment-mytpmpl__header">способ оплаты</span>
+                    {{> _timer}}
+                    {{#order.payment.cardPaymentActive}}
+                        {{#order.payment.paymentMethods.link.length}}
+                            <h5 class="b-unit__header_size_small b-registration__header">Или выберите другой способ оплаты:</h5>
+                        {{/order.payment.paymentMethods.link.length}}
+                    {{/order.payment.cardPaymentActive}}
 
-
-
-
-    <script type="text/mustache" id="mainTplMy">
-        <div class="i-page">
-            <form id="eventreg_form" action="{{event.domain}}event/widget_register/{{event.id}}">
-                {{! Основной блок покупки билета }}
-                {{> _selectTickets}}
-                {{! Этот блок выводит ошибки в форме }}
-                <div class="b-registration__section b-registration__section_no-bottom-space">
-                    <div class="b-registration__error hide"></div>
+                    {{#order.payment.paymentMethods.link}}
+                        <a href="{{#available}}{{url}}{{/available}}{{^available}}javascript:false{{/available}}" class="b-payment__method {{#available}}redirect{{/available}} {{^available}}b-payment__method-disabled{{/available}}">
+                            <span class="b-payment__method-label">{{label}}</span>
+                        </a>
+                    {{/order.payment.paymentMethods.link}}
                 </div>
-                {{! Основной блок покупки билета }}
-                {{> _ank }}
-            </form>
+            {{/order.payment.paymentMethods}}
         </div>
-    </script>
+    </div>
+</script>
 
 
 
 
+<script type="text/mustache" async="async" id="mainTplMy">
+    <div class="i-page">
+        <form id="eventreg_form" action="{{event.domain}}event/widget_register/{{event.id}}">
+            {{! Основной блок покупки билета }}
+            {{> _selectTickets}}
+            {{! Этот блок выводит ошибки в форме }}
+            <div class="b-registration__section b-registration__section_no-bottom-space">
+                <div class="b-registration__error hide"></div>
+            </div>
+            {{! Основной блок покупки билета }}
+            {{> _ank }}
+        </form>
+    </div>
+</script>
 
 
 
-
-    <script type="text/mustache" id="_selectTicketsTplMy">
-        <div class="b-registration__section js-section-selectTickets">
-            {{^event.promocode_locked}}
-                <div class="row-fluid b-reg-table b-reg-table_type_striped">
-                    {{#event.uses_ticket_choice}}
-                        {{#event.tickets}}
-                            <div class="row-fluid b-reg-table__row {{#has_promocode}}b-reg-table__row_type_promo{{/has_promocode}}" id="rei_cont_{{id}}">
-                                <div class="{{#event.uses_multireg}}span6{{/event.uses_multireg}}{{^event.uses_multireg}}span9{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-name {{^event.uses_multireg}}b-reg-table__cell-name_full-width{{/event.uses_multireg}}">
-                                    {{! Цена билета }}
-                                    <div class="b-reg-table__price-mobile{{^event.uses_multireg}} b-reg-table__price-mobile_non-multireg{{/event.uses_multireg}}">
-                                        <span>{{h_price}}</span>
-                                    </div>
-                                    {{! Название вида билета, его можно сделать описанием билета }}
-                                    <label class="b-reg-table__text {{^event.uses_multireg}} b-reg-table__text_with_radio{{/event.uses_multireg}}" for="rei_{{id}}">
-                                        {{^event.uses_multireg}}
-                                            
-                                            <input {{#force_check}}checked="checked"{{/force_check}} type="radio" class="b-reg-table__select b-radio_where_table" name="re_id" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}" {{^available}}disabled="disabled"{{/available}}>
-                                            <span class="checkmark-radio-btn"></span>
-                                            
-                                            </input>
-                                        {{/event.uses_multireg}}
-                                        <span style="top:-6px; position:relative;">{{{name}}}</span>
-                                    </label>
-                                    
+<script type="text/mustache" async="async" id="_selectTicketsTplMy">
+    <div class="b-registration__section js-section-selectTickets">
+        {{^event.promocode_locked}}
+            <div class="row-fluid b-reg-table b-reg-table_type_striped">
+                {{#event.uses_ticket_choice}}
+                    {{#event.tickets}}
+                        <div class="row-fluid b-reg-table__row {{#has_promocode}}b-reg-table__row_type_promo{{/has_promocode}}" id="rei_cont_{{id}}">
+                            <div class="{{#event.uses_multireg}}span6{{/event.uses_multireg}}{{^event.uses_multireg}}span9{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-name {{^event.uses_multireg}}b-reg-table__cell-name_full-width{{/event.uses_multireg}}">
+                                {{! Цена билета }}
+                                <div class="b-reg-table__price-mobile{{^event.uses_multireg}} b-reg-table__price-mobile_non-multireg{{/event.uses_multireg}}">
+                                    <span>{{h_price}}</span>
                                 </div>
+                                {{! Название вида билета, его можно сделать описанием билета }}
+                                <label class="b-reg-table__text {{^event.uses_multireg}} b-reg-table__text_with_radio{{/event.uses_multireg}}" for="rei_{{id}}">
+                                    {{^event.uses_multireg}}
 
+                                        <input {{#force_check}}checked="checked"{{/force_check}} type="radio" class="b-reg-table__select b-radio_where_table" name="re_id" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}" {{^available}}disabled="disabled"{{/available}}>
+                                        <span class="checkmark-radio-btn"></span>
 
-                                {{! Выбор кол-ва билетов }}
-                                <div class="{{#event.uses_multireg}}span2{{/event.uses_multireg}}{{^event.uses_multireg}}span4{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-count">
-                                    {{#available}}
-                                        {{#event.uses_multireg}}
-                                            {{#settings.use_plusminus}}
-                                                <div class="b-reg-table__plusminus js-plusminus" data-plusminus-min="{{min}}" data-plusminus-max="{{max}}">
-                                                    
-                                                    {{! Уменьшить кол-во билетов }}
-                                                    <div class="b-reg-table__plusminus_btn not-touch js-svoge-fallback js-plusminus_minus" type="button">
-                                                        <svg class="svg-button" width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                            <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
-                                                            <title>Group 7</title>
-                                                            <desc>Created with Sketch.</desc>
-                                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <g id="campus---основы-композиции" transform="translate(-845.000000, -3517.000000)">
-                                                                    <g id="Group-13" transform="translate(507.000000, 3515.000000)">
-                                                                        <g id="Group-6" transform="translate(338.000000, 2.000000)">
-                                                                            <g id="Group-7">
-                                                                                <circle id="Oval-2" fill="#F0EADC" cx="17" cy="17" r="17"></circle>
-                                                                                <rect id="Rectangle" fill-opacity="0.5" fill="#000000" x="7" y="16" width="20" height="2"></rect>
-                                                                            </g>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </svg>
-                                                    </div>
+                                        </input>
+                                    {{/event.uses_multireg}}
+                                    <span style="top:-6px; position:relative;">{{{name}}}</span>
+                                </label>
 
-                                                    {{! Цифра кол-ва билетов }}
-                                                    <span class="b-reg-table__plusminus-value js-plusminus_display">{{default_count}}</span>
-                                                    <input class="js-tickets_count_input js-plusminus_value" type="hidden" name="res[{{id}}]" data-reid="{{id}}" id="rei_{{id}}" autocomplete="nein" value="{{default_count}}">
-                                                    
-                                                    {{! Увеличить кол-во билетов }}
-                                                    <div class="b-reg-table__plusminus_btn js-svoge-fallback not-touch js-plusminus_plus" type="button">
-                                                        <svg class="svg-button" width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                            <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
-                                                            <title>Group 7 Copy</title>
-                                                            <desc>Created with Sketch.</desc>
-                                                            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                                <g id="campus---основы-композиции" transform="translate(-929.000000, -3517.000000)">
-                                                                    <g id="Group-13" transform="translate(507.000000, 3515.000000)">
-                                                                        <g id="Group-6" transform="translate(338.000000, 2.000000)">
-                                                                            <g id="Group-7-Copy" transform="translate(84.000000, 0.000000)">
-                                                                                <circle id="Oval" fill="#F0EADC" cx="17" cy="17" r="17"></circle>
-                                                                                <path d="M18,7 L18,16 L27,16 L27,18 L18,18 L18,27 L16,27 L16,18 L7,18 L7,16 L16,16 L16,7 L18,7 Z" id="Combined-Shape" fill-opacity="0.5" fill="#000000"></path>
-                                                                            </g>
-                                                                        </g>
-                                                                    </g>
-                                                                </g>
-                                                            </g>
-                                                        </svg>
-                                                    </div>
-                                                </div>
-                                            {{/settings.use_plusminus}}
-                                        {{/event.uses_multireg}}
-                                    {{/available}}
-                                    {{^available}}
-                                        недоступно
-                                    {{/available}}
-                                </div>
                             </div>
-                        {{/event.tickets}}
-                    {{/event.uses_ticket_choice}}
-
-                    {{^event.uses_ticket_choice}}
-                        {{#event.tickets}}
-                            <input type="hidden" name="re_id" class="b-reg-table__hidden" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}">
-                        {{/event.tickets}}
-                    {{/event.uses_ticket_choice}}
 
 
-                    {{! Показывет слолько выбрано билетов и на какую сумму }}
-                     <div class="selectedTicketsInfo b-reg-table__text"></div>
-                </div>
-            {{/event.promocode_locked}}
-        </div>
-    </script>
+                            {{! Выбор кол-ва билетов }}
+                            <div class="{{#event.uses_multireg}}span2{{/event.uses_multireg}}{{^event.uses_multireg}}span4{{/event.uses_multireg}} b-reg-table__cell b-reg-table__cell-count">
+                                {{#available}}
+                                    {{#event.uses_multireg}}
+                                        {{#settings.use_plusminus}}
+                                            <div class="b-reg-table__plusminus js-plusminus" data-plusminus-min="{{min}}" data-plusminus-max="{{max}}">
+
+                                                {{! Уменьшить кол-во билетов }}
+                                                <div class="b-reg-table__plusminus_btn not-touch js-svoge-fallback js-plusminus_minus" type="button">
+                                                    <svg class="svg-button" width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                        <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+                                                        <title>Group 7</title>
+                                                        <desc>Created with Sketch.</desc>
+                                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <g id="campus---основы-композиции" transform="translate(-845.000000, -3517.000000)">
+                                                                <g id="Group-13" transform="translate(507.000000, 3515.000000)">
+                                                                    <g id="Group-6" transform="translate(338.000000, 2.000000)">
+                                                                        <g id="Group-7">
+                                                                            <circle id="Oval-2" fill="#F0EADC" cx="17" cy="17" r="17"></circle>
+                                                                            <rect id="Rectangle" fill-opacity="0.5" fill="#000000" x="7" y="16" width="20" height="2"></rect>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+
+                                                {{! Цифра кол-ва билетов }}
+                                                <span class="b-reg-table__plusminus-value js-plusminus_display">{{default_count}}</span>
+                                                <input class="js-tickets_count_input js-plusminus_value" type="hidden" name="res[{{id}}]" data-reid="{{id}}" id="rei_{{id}}" autocomplete="nein" value="{{default_count}}">
+
+                                                {{! Увеличить кол-во билетов }}
+                                                <div class="b-reg-table__plusminus_btn js-svoge-fallback not-touch js-plusminus_plus" type="button">
+                                                    <svg class="svg-button" width="34px" height="34px" viewBox="0 0 34 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                        <!-- Generator: Sketch 60 (88103) - https://sketch.com -->
+                                                        <title>Group 7 Copy</title>
+                                                        <desc>Created with Sketch.</desc>
+                                                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                            <g id="campus---основы-композиции" transform="translate(-929.000000, -3517.000000)">
+                                                                <g id="Group-13" transform="translate(507.000000, 3515.000000)">
+                                                                    <g id="Group-6" transform="translate(338.000000, 2.000000)">
+                                                                        <g id="Group-7-Copy" transform="translate(84.000000, 0.000000)">
+                                                                            <circle id="Oval" fill="#F0EADC" cx="17" cy="17" r="17"></circle>
+                                                                            <path d="M18,7 L18,16 L27,16 L27,18 L18,18 L18,27 L16,27 L16,18 L7,18 L7,16 L16,16 L16,7 L18,7 Z" id="Combined-Shape" fill-opacity="0.5" fill="#000000"></path>
+                                                                        </g>
+                                                                    </g>
+                                                                </g>
+                                                            </g>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        {{/settings.use_plusminus}}
+                                    {{/event.uses_multireg}}
+                                {{/available}}
+                                {{^available}}
+                                    недоступно
+                                {{/available}}
+                            </div>
+                        </div>
+                    {{/event.tickets}}
+                {{/event.uses_ticket_choice}}
+
+                {{^event.uses_ticket_choice}}
+                    {{#event.tickets}}
+                        <input type="hidden" name="re_id" class="b-reg-table__hidden" data-reid="{{id}}" value="{{id}}" id="rei_{{id}}">
+                    {{/event.tickets}}
+                {{/event.uses_ticket_choice}}
+
+
+                {{! Показывет слолько выбрано билетов и на какую сумму }}
+                 <div class="selectedTicketsInfo b-reg-table__text"></div>
+            </div>
+        {{/event.promocode_locked}}
+    </div>
+</script>
 
 
 
@@ -230,37 +249,6 @@
                 Поля, отмеченные звездочкой (<span class="b-registration__question_mandatory">*</span>), нужно обязательно заполнить
             </p-->
         </div>  
-    </script>
-
-
-
-
-
-
-
-    <script type="text/mustache" id="payTplMy">
-        <div class="i-page">
-
-            <div class="b-registration__section b-registration__section_indent">
-                {{#order.payment.paymentMethods}}
-                    <div class="b-payment">
-                        <span class="b-payment-mytpmpl__header">способ оплаты</span>
-                        {{> _timer}}
-                        {{#order.payment.cardPaymentActive}}
-                            {{#order.payment.paymentMethods.link.length}}
-                                <h5 class="b-unit__header_size_small b-registration__header">Или выберите другой способ оплаты:</h5>
-                            {{/order.payment.paymentMethods.link.length}}
-                        {{/order.payment.cardPaymentActive}}
-
-                        {{#order.payment.paymentMethods.link}}
-                            <a href="{{#available}}{{url}}{{/available}}{{^available}}javascript:false{{/available}}" class="b-payment__method {{#available}}redirect{{/available}} {{^available}}b-payment__method-disabled{{/available}}">
-                                <span class="b-payment__method-label">{{label}}</span>
-                            </a>
-                        {{/order.payment.paymentMethods.link}}
-                    </div>
-                {{/order.payment.paymentMethods}}
-            </div>
-        </div>
     </script>
 </body>
 </html>
