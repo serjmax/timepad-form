@@ -7,7 +7,7 @@
     --cream-color: #F0EADC;
     --black-color: #262626;
     --red-color: #FF3F05;
-  }
+}
 
 html{
     font-family: Repro-Regular, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -20,7 +20,7 @@ html{
         zoom: 1.25;
     }
     body{
-        /* height: 1800px; */
+        /* height: 1444px; */
     }
 }
 
@@ -29,10 +29,10 @@ a{
 }
 
 #tpw_cont{
-    padding-top: 2px;
-    width: 450px;
-    height: 2000px;
-    overflow: hidden;
+    /* padding-top: 2px; */
+    width: 456px;
+    /* height: 2000px; */
+    /* overflow: hidden; */
 }
 
 .b-reg-table_type_striped{
