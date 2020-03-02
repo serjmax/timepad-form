@@ -20,7 +20,7 @@ html{
         zoom: 1.25;
     }
     body{
-        height: 1800px;
+        /* height: 1800px; */
     }
 }
 
@@ -31,6 +31,7 @@ a{
 #tpw_cont{
     padding-top: 2px;
     width: 450px;
+    height: 2000px;
     overflow: hidden;
 }
 
